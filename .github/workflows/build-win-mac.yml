@@ -123,3 +123,11 @@ jobs:
             build/installer-*/*.dsym/*
             build/symbols-*/*.pdb
           if-no-files-found: error
+
+      - name: Upload Windows Installer
+              if: runner.os == 'Windows'
+              uses: actions/upload-artifact@v6
+              with:
+                name: Moonlight-Windows-Setup-${{ env.CI_VERSION }}
+                path: build/installer-Release/MoonlightSetup-${{ env.CI_VERSION }}.exe
+                if-no-files-found: error
